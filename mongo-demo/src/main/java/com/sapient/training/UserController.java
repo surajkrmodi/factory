@@ -1,4 +1,4 @@
-package com.example.mongodemo;
+package com.sapient.training;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,13 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
-	
 	@Autowired
 	UserServiceImpl userService;
 	
-	@PostMapping("user")
+	@PostMapping("/user")
 	String saveUser(@RequestBody User user) {
 		return userService.save(user);
 	}
-
 }

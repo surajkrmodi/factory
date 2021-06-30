@@ -1,10 +1,10 @@
-package com.example.mongodemo;
+package com.sapient.training;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MongoDemoApplicationTests {
+class SpringMongoApplicationTests {
 
 	@Test
 	void contextLoads() {
