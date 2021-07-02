@@ -1,13 +1,15 @@
-package com.example.bug.BugProject;
+package com.sapient.training;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BugProjectApplicationTests {
+class SpringMongoApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
+	
+	
 
 }
