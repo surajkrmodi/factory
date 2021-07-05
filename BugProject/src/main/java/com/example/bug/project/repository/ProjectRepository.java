@@ -1,11 +1,11 @@
 package com.example.bug.project.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.data.repository.CrudRepository;
 
 import com.example.bug.project.entity.Project;
 
-@Repository
-public interface ProjectRepository extends MongoRepository<Project, String> {
+//@Repository
+public interface ProjectRepository extends CrudRepository<Project, String> {
 
 }
