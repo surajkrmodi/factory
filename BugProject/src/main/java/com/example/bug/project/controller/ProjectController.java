@@ -28,7 +28,7 @@ public class ProjectController {
 
 	@Autowired
 	private IProjectService projectServiceImpl;
-	
+
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/api/project")
 	public String createProject(@Valid @RequestBody Project project) {
@@ -40,22 +40,23 @@ public class ProjectController {
 		return projectServiceImpl.findAll();
 
 	}
+
 	@PatchMapping("/api/project/{id}")
-	public void updateUser(@RequestBody Project project,@PathVariable String id) {
+	public void updateUser(@RequestBody Project project, @PathVariable String id) {
 		project.setId(id);
 		projectServiceImpl.updateUser(project);
 	}
+
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String, String> handleValidationExceptions(
-	  MethodArgumentNotValidException ex) {
-	    Map<String, String> errors = new HashMap<>();
-	    ex.getBindingResult().getAllErrors().forEach((error) -> {
-	        String fieldName = ((FieldError) error).getField();
-	        String errorMessage = error.getDefaultMessage();
-	        errors.put(fieldName, errorMessage);
-	    });
-	    return errors;
+	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+		Map<String, String> errors = new HashMap<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			String fieldName = ((FieldError) error).getField();
+			String errorMessage = error.getDefaultMessage();
+			errors.put(fieldName, errorMessage);
+		});
+		return errors;
 	}
 
 }
