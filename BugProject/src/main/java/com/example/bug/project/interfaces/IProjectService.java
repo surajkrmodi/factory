@@ -10,4 +10,6 @@ public interface IProjectService {
 
 	List<Project> findAll();
 
+	void updateUser(Project project);
+
 }

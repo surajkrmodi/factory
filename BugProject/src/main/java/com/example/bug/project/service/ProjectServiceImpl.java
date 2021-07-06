@@ -28,4 +28,9 @@ public class ProjectServiceImpl implements IProjectService {
 	public List<Project> findAll() {
 		return (List<Project>) projectRepository.findAll();
 	}
+	@Override
+	public void updateUser(Project project) {
+		// TODO Auto-generated method stub
+		projectRepository.save(project);
+	}
 }
