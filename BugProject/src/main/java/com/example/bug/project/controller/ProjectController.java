@@ -1,6 +1,9 @@
 package com.example.bug.project.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,4 +22,10 @@ public class ProjectController {
 	public String createProject(@RequestBody Project project) {
 		return projectServiceImpl.save(project);
 	}
+	@GetMapping("/api/project") 
+	public List<Project> getAllUsers() {
+		return  projectServiceImpl.findAll();
+		
+	}
+	
 }
