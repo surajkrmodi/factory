@@ -15,15 +15,15 @@ public class ProjectServiceImpl implements IProjectService {
 
 	@Autowired
 	ProjectRepository projectRepository;
-	
+
 	@Override
 	public String save(Project project) {
 		project.setCreatedDate(LocalDate.now());
 		Project saved = projectRepository.save(project);
-		
+
 		return saved.getId();
 	}
-	
+
 	@Override
 	public List<Project> findAll() {
 		return (List<Project>) projectRepository.findAll();

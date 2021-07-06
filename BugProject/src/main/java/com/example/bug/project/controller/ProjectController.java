@@ -14,7 +14,6 @@ import com.example.bug.project.service.ProjectServiceImpl;
 @RestController
 public class ProjectController {
 
-	
 	@Autowired
 	private ProjectServiceImpl projectServiceImpl;
 
@@ -22,10 +21,11 @@ public class ProjectController {
 	public String createProject(@RequestBody Project project) {
 		return projectServiceImpl.save(project);
 	}
-	@GetMapping("/api/project") 
+
+	@GetMapping("/api/project")
 	public List<Project> getAllUsers() {
-		return  projectServiceImpl.findAll();
-		
+		return projectServiceImpl.findAll();
+
 	}
-	
+
 }
