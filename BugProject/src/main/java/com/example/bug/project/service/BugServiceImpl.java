@@ -1,5 +1,6 @@
 package com.example.bug.project.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class BugServiceImpl implements IBugService {
 	@Override
 	public String save(Bug bug) {
 		// TODO Auto-generated method stub
+		bug.setCreatedDate(LocalDateTime.now());
 		Bug saved = bugRepository.save(bug);
 		return saved.getId();
 	}
@@ -25,7 +27,7 @@ public class BugServiceImpl implements IBugService {
 	@Override
 	public List<Bug> findAll() {
 		
-		return (List<Bug>) bugRepository.findAll();
+		return  bugRepository.findAll();
 	}
 
 	@Override

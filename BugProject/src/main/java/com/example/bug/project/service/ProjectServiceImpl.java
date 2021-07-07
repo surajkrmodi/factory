@@ -25,7 +25,7 @@ public class ProjectServiceImpl implements IProjectService {
 
 	@Override
 	public List<Project> findAll() {
-		return (List<Project>) projectRepository.findAll();
+		return projectRepository.findAll();
 	}
 
 	@Override

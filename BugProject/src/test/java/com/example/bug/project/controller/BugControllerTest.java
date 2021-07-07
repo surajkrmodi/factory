@@ -48,5 +48,9 @@ class BugControllerTest {
 		Optional<Bug> bugReturned = bugController.findBugById(id);
 		assertEquals(bug,bugReturned);
 	}
+	@Test
+	void testIfProjectExistes() {
+		
+	}
 
 }
