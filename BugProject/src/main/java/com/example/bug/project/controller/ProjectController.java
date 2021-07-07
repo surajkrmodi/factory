@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bug.project.entity.Project;
 import com.example.bug.project.service.IProjectService;
-import com.example.bug.project.service.ProjectServiceImpl;
 
 @RestController
 public class ProjectController {

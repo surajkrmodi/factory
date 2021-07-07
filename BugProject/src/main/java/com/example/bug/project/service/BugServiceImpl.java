@@ -15,24 +15,23 @@ public class BugServiceImpl implements IBugService {
 
 	@Autowired
 	BugRepository bugRepository;
-	
+
 	@Override
 	public String save(Bug bug) {
-		// TODO Auto-generated method stub
 		bug.setCreatedDate(LocalDateTime.now());
 		Bug saved = bugRepository.save(bug);
 		return saved.getId();
-	} 
+	}
 
 	@Override
 	public List<Bug> findAll() {
-		
-		return  bugRepository.findAll();
+
+		return bugRepository.findAll();
 	}
 
 	@Override
 	public Optional<Bug> find(String id) {
-		
+
 		return bugRepository.findById(id);
 	}
 

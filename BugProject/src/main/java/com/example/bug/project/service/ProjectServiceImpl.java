@@ -30,7 +30,6 @@ public class ProjectServiceImpl implements IProjectService {
 
 	@Override
 	public void updateUser(Project project) {
-		// TODO Auto-generated method stub
 		projectRepository.save(project);
 	}
 }

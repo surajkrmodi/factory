@@ -11,21 +11,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.example.bug.project.entity.Bug;
 import com.example.bug.project.entity.Project;
 import com.example.bug.project.service.IProjectService;
-import com.example.bug.project.service.ProjectServiceImpl;
+
 @ExtendWith(MockitoExtension.class)
 class ProjectControllerTest {
 
 	@InjectMocks
 	private ProjectController projectController;
-	
+
 	@Mock
-	IProjectService  iProjectServiceImpl;
-	
+	IProjectService iProjectServiceImpl;
+
 	@Test
 	void testCreateProject() {
 		Project project = new Project();
@@ -33,6 +31,7 @@ class ProjectControllerTest {
 		String id = projectController.createProject(project);
 		assertNotNull(id);
 	}
+
 	@Test
 	void testGetAllUsers() {
 		List<Project> response = new ArrayList<Project>();

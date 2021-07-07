@@ -23,7 +23,7 @@ import com.example.bug.project.service.IBugService;
 
 @RestController
 public class BugController {
-	
+
 	@Autowired
 	IBugService iBugService;
 
@@ -39,9 +39,9 @@ public class BugController {
 
 	@GetMapping("/api/bug/{id}")
 	public Optional<Bug> findBugById(String id) {
-		// TODO Auto-generated method stub
 		return iBugService.find(id);
 	}
+
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {

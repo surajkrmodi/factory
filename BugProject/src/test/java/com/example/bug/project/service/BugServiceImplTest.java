@@ -21,10 +21,10 @@ class BugServiceImplTest {
 
 	@InjectMocks
 	private BugServiceImpl bugServiceimpl;
-	
+
 	@Mock
 	BugRepository bugRepository;
-	
+
 	@Test
 	void testSave() {
 		Bug bug = new Bug();
@@ -34,27 +34,23 @@ class BugServiceImplTest {
 		assertEquals(bugReturned, bug.getId());
 	}
 
-	
-	  @Test void testFindAll() {
-		  List<Bug> bugList = new ArrayList<>();
-		  when(bugRepository.findAll()).thenReturn(bugList);
-		  List<Bug> bugListReturned = bugServiceimpl.findAll();
-		  assertIterableEquals(bugList, bugListReturned);
-	  
-	  }
-	  
-		
-		  @Test void testFind() {
-			  Optional<Bug> bug = Optional.ofNullable(new Bug());
-			  String id = "4485461dwjdgvwdjv";
-			  when(bugRepository.findById(id)).thenReturn(bug);
-			  Optional<Bug> bugReturned = bugServiceimpl.find(id);
-			  assertEquals(bug, bugReturned);
-			  
-			  
-		  
-		  }
-		 
-	 
+	@Test
+	void testFindAll() {
+		List<Bug> bugList = new ArrayList<>();
+		when(bugRepository.findAll()).thenReturn(bugList);
+		List<Bug> bugListReturned = bugServiceimpl.findAll();
+		assertIterableEquals(bugList, bugListReturned);
+
+	}
+
+	@Test
+	void testFind() {
+		Optional<Bug> bug = Optional.ofNullable(new Bug());
+		String id = "4485461dwjdgvwdjv";
+		when(bugRepository.findById(id)).thenReturn(bug);
+		Optional<Bug> bugReturned = bugServiceimpl.find(id);
+		assertEquals(bug, bugReturned);
+
+	}
 
 }

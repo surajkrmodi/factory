@@ -12,20 +12,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.example.bug.project.entity.Bug;
 import com.example.bug.project.entity.Project;
-import com.example.bug.project.repository.BugRepository;
 import com.example.bug.project.repository.ProjectRepository;
+
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceImplTest {
-	
 
 	@InjectMocks
 	private ProjectServiceImpl projectServiceimpl;
-	
+
 	@Mock
 	ProjectRepository projectRepository;
-	
+
 	@Test
 	void testSave() {
 		Project project = new Project();
@@ -38,15 +36,9 @@ class ProjectServiceImplTest {
 	@Test
 	void testFindAll() {
 		List<Project> projectList = new ArrayList<>();
-		  when(projectRepository.findAll()).thenReturn(projectList);
-		  List<Project> projectListReturned = projectServiceimpl.findAll();
-		  assertIterableEquals(projectList, projectListReturned);
+		when(projectRepository.findAll()).thenReturn(projectList);
+		List<Project> projectListReturned = projectServiceimpl.findAll();
+		assertIterableEquals(projectList, projectListReturned);
 	}
-
-	/*
-	 * @Test void testUpdateUser() {
-	 * 
-	 * }
-	 */
 
 }
