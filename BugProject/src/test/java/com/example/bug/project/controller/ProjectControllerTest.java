@@ -3,6 +3,9 @@ package com.example.bug.project.controller;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -10,7 +13,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.bug.project.entity.Bug;
 import com.example.bug.project.entity.Project;
+import com.example.bug.project.service.IProjectService;
 import com.example.bug.project.service.ProjectServiceImpl;
 @ExtendWith(MockitoExtension.class)
 class ProjectControllerTest {
@@ -19,14 +24,22 @@ class ProjectControllerTest {
 	private ProjectController projectController;
 	
 	@Mock
-	ProjectServiceImpl  projectServiceImpl;
+	IProjectService  iProjectServiceImpl;
 	
 	@Test
 	void testCreateProject() {
 		Project project = new Project();
-		when(projectServiceImpl.save(project)).thenReturn("Hello");
+		when(iProjectServiceImpl.save(project)).thenReturn("Hello");
 		String id = projectController.createProject(project);
 		assertNotNull(id);
+	}
+	@Test
+	void testGetAllUsers() {
+		List<Project> response = new ArrayList<Project>();
+		response.add(new Project());
+		when(iProjectServiceImpl.findAll()).thenReturn(response);
+		List<Project> responseReturned = projectController.getAllUsers();
+		assertIterableEquals(response, responseReturned);
 	}
 
 }

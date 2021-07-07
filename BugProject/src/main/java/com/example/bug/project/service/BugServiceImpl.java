@@ -22,7 +22,7 @@ public class BugServiceImpl implements IBugService {
 		bug.setCreatedDate(LocalDateTime.now());
 		Bug saved = bugRepository.save(bug);
 		return saved.getId();
-	}
+	} 
 
 	@Override
 	public List<Bug> findAll() {
