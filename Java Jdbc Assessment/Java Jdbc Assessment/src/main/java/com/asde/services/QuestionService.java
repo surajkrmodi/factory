@@ -34,13 +34,17 @@ public class QuestionService implements IQuestionService {
 	 *           layer shall have connection object
 	 */
 	public QuestionService() throws IOException, ClassNotFoundException, SQLException {
+
 		try {
 			dao = new QuestionDAO();
 		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (PropertyFileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -57,11 +61,24 @@ public class QuestionService implements IQuestionService {
 	 */
 	@Override
 	public boolean insertQuestion(Question question) throws SQLException {
-		return false;
+		if (question.getQuestionId() < 0) {
+			return false;
+		}
+		if (question.getQuestion().length() < 20) {
+			return false;
+		}
+		if (question.getUid() < 0) {
+			return false;
+		}
+		if (question.getVotes() != 0) {
+			return false;
+		}
+		return dao.insertQuestion(question);
 	}
 
 	/**
 	 * @author <Your Name>
+	 * @throws SQLException
 	 * @apiNote This method shall return all the questions which are on the DBMS
 	 * 
 	 * 
@@ -69,12 +86,13 @@ public class QuestionService implements IQuestionService {
 	 *          SQLException;
 	 */
 	@Override
-	public List<Question> getAllQuestions() {
-		return null;
+	public List<Question> getAllQuestions() throws SQLException {
+		return dao.getAllQuestions();
 	}
 
 	/**
 	 * @author <Your Name>
+	 * @throws SQLException
 	 * @apiNote This method shall return all the questions which has votes greater
 	 *          than the specified number of votes
 	 * 
@@ -85,9 +103,9 @@ public class QuestionService implements IQuestionService {
 	 *                            getAllQuestions(int votes) throws SQLException;
 	 */
 	@Override
-	public List<Question> getAllQuestions(int votes) throws QuestionNotFoundException, QuestionSQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Question> getAllQuestions(int votes)
+			throws QuestionNotFoundException, QuestionSQLException, SQLException {
+		return dao.getAllQuestions(votes);
 	}
 
 	/**
@@ -99,7 +117,10 @@ public class QuestionService implements IQuestionService {
 	 */
 	@Override
 	public Question getQuestion(int questionId) throws SQLException {
-		return null;
+		if (questionId < 0) {
+			return null;
+		}
+		return dao.getQuestion(questionId);
 	}
 
 	/**
@@ -110,8 +131,20 @@ public class QuestionService implements IQuestionService {
 	 */
 	@Override
 	public int getVotesForQuestion(int questionId) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (questionId < 0) {
+			return 0;
+		}
+		Question question = new Question();
+		try {
+			question = dao.getQuestion(questionId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (question == null) {
+			return 0;
+		}
+		return question.getVotes();
 	}
 
 	/**
@@ -127,7 +160,11 @@ public class QuestionService implements IQuestionService {
 	 */
 	@Override
 	public List<Answer> getAnswers(int questionId) throws SQLException {
-		return null;
+		if (questionId < 0) {
+			return null;
+		}
+
+		return dao.getAnswers(questionId);
 	}
 
 	/**
@@ -139,7 +176,10 @@ public class QuestionService implements IQuestionService {
 	 */
 	@Override
 	public int upVoteQuestion(int questionId) throws SQLException {
-		return 0;
+		if (questionId < 0) {
+			return 0;
+		}
+		return dao.upOrDownVoteQuestion(questionId, true);
 	}
 
 	/**
@@ -151,7 +191,10 @@ public class QuestionService implements IQuestionService {
 	 */
 	@Override
 	public int downVoteQuestion(int questionId) throws SQLException {
-		return 0;
+		if (questionId < 0) {
+			return 0;
+		}
+		return dao.upOrDownVoteQuestion(questionId, true);
 	}
 
 	/**
@@ -167,7 +210,7 @@ public class QuestionService implements IQuestionService {
 
 	@Override
 	public void deleteQuestion(int questionId) throws SQLException {
-
+		dao.deleteQuestion(questionId);
 		// TODO
 	}
 
