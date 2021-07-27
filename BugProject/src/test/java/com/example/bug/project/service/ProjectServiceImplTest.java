@@ -1,6 +1,8 @@
 package com.example.bug.project.service;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -14,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.bug.project.entity.Project;
 import com.example.bug.project.repository.ProjectRepository;
-
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceImplTest {
 
@@ -39,6 +40,13 @@ class ProjectServiceImplTest {
 		when(projectRepository.findAll()).thenReturn(projectList);
 		List<Project> projectListReturned = projectServiceimpl.findAll();
 		assertIterableEquals(projectList, projectListReturned);
+	}
+	@Test
+	void testUpdateUser() {
+		Project project = new Project();
+		when(projectRepository.save(project)).thenReturn(project);
+		projectServiceimpl.updateUser(project);
+		verify(projectRepository,times(1)).save(project);
 	}
 
 }
